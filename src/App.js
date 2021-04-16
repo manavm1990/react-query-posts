@@ -1,5 +1,5 @@
 import { Box, ChakraProvider, Grid, theme } from '@chakra-ui/react';
-import { PostsPage } from 'pages';
+import { PostPage, PostsPage } from 'pages';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -22,9 +22,9 @@ export default function App() {
                   <PostsPage />
                 </Route>
 
-                {/* <Route path="/:id">
+                <Route path="/:id">
                   <PostPage />
-                </Route> */}
+                </Route>
               </Switch>
             </Router>
             <ReactQueryDevtools />
