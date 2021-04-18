@@ -5,5 +5,6 @@ export default function usePosts() {
   return useQuery('posts', fetchPosts, {
     refetchOnWindowFocus: false,
     staleTime: 50000,
+    retry: 2,
   });
 }

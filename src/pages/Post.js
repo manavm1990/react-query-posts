@@ -1,19 +1,11 @@
 import { Button, Heading, Text } from '@chakra-ui/react';
-import { useQuery, useQueryClient } from 'react-query';
+import { usePost } from 'hooks';
 import { Link, useParams } from 'react-router-dom';
-import { api } from 'services';
 
 export default function Post() {
   const { id } = useParams();
 
-  const currentQC = useQueryClient();
-
-  const { data, error, status } = useQuery(['post', id], () => api.show(id), {
-    initialData: () =>
-      currentQC?.getQueryData('posts').find(post => post.id === id),
-    refetchOnWindowFocus: false,
-    staleTime: 50000,
-  });
+  const { data, error, status } = usePost(id);
 
   switch (status) {
     case 'loading':

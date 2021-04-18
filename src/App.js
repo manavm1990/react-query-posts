@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  ChakraProvider,
-  Flex,
-  Spacer,
-  theme,
-} from '@chakra-ui/react';
+import { Box, Button, ChakraProvider, Spacer, theme } from '@chakra-ui/react';
 import { fetchPosts } from 'lib';
 import { PostPage, PostsPage } from 'pages';
 import { useEffect, useState } from 'react';
@@ -27,24 +20,26 @@ export default function App() {
     <ChakraProvider theme={theme}>
       <Box fontSize="xl">
         <QueryClientProvider client={qc}>
-          <Flex px="1rem" my="2rem">
-            <Button
-              onClick={() => {
-                setIsVisible(prev => !prev);
-              }}
-              maxW="max-content"
-            >
-              Show Posts
-            </Button>
-            <Spacer />
-
-            <ColorModeSwitcher justifySelf="flex-end" />
-          </Flex>
+          <Box px="1rem" my="2rem">
+            {/* TODO: Fix this layout! */}
+            <ColorModeSwitcher />
+          </Box>
 
           <Router>
             <Switch>
               <Route exact path="/">
-                <PostsPage show={isVisible} />
+                {' '}
+                <Button
+                  onClick={() => {
+                    setIsVisible(prev => !prev);
+                  }}
+                  maxW="max-content"
+                  ml="1rem"
+                >
+                  Show Posts
+                </Button>
+                <Spacer />
+                {isVisible ? <PostsPage /> : null}
               </Route>
 
               <Route path="/:id">
