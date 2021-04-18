@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { PropTypes } from 'prop-types';
 
-export default function CreatePost({ handler }) {
+export default function CreatePost({ handler, buttonTxt }) {
   return (
     <Stack
       mt="0.75rem"
@@ -30,10 +30,15 @@ export default function CreatePost({ handler }) {
           <Input />
         </FormControl>
 
-        <Button my="1rem">Create Post!</Button>
+        <Button my="1rem">{buttonTxt}</Button>
       </form>
     </Stack>
   );
 }
 
-CreatePost.propTypes = { handler: PropTypes.func.isRequired };
+CreatePost.propTypes = {
+  buttonTxt: PropTypes.string,
+  handler: PropTypes.func.isRequired,
+};
+
+CreatePost.defaultProps = { buttonTxt: 'Create Post!' };
