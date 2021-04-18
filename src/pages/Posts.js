@@ -1,14 +1,10 @@
 import { Box, Heading, ListItem, Text, UnorderedList } from '@chakra-ui/react';
+import { usePosts } from 'hooks';
 import PropTypes from 'prop-types';
-import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import { api } from 'services';
 
 export default function Posts({ show }) {
-  const { data, error, status } = useQuery('posts', () => api.index(), {
-    refetchOnWindowFocus: false,
-    staleTime: 50000,
-  });
+  const { data, error, status } = usePosts();
 
   switch (status) {
     case 'loading':

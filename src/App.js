@@ -6,8 +6,9 @@ import {
   Spacer,
   theme,
 } from '@chakra-ui/react';
+import { fetchPosts } from 'lib';
 import { PostPage, PostsPage } from 'pages';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -17,6 +18,10 @@ const qc = new QueryClient();
 
 export default function App() {
   const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    qc.prefetchQuery('posts', fetchPosts);
+  });
 
   return (
     <ChakraProvider theme={theme}>
