@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 export default function usePosts() {
   return useQuery('posts', fetchPosts, {
     refetchOnWindowFocus: false,
-    staleTime: 50000,
+    staleTime: Infinity,
     retry: 2,
   });
 }

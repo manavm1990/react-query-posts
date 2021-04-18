@@ -8,6 +8,6 @@ export default function usePost(id) {
     initialData: () =>
       currentQC?.getQueryData('posts').find(post => post.id === id),
     refetchOnWindowFocus: false,
-    staleTime: 50000,
+    staleTime: Infinity,
   });
 }
