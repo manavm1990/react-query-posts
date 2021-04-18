@@ -1,4 +1,4 @@
-import { Button, Heading, Text } from '@chakra-ui/react';
+import { Box, Button, Heading, Text } from '@chakra-ui/react';
 import { usePost } from 'hooks';
 import { Link, useParams } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ export default function Post() {
       return <Text>{error.message}</Text>;
     default:
       return (
-        <>
+        <Box pl="1rem">
           <Link to="/">
             <Button colorScheme="teal" size="xs" maxW="max-content">
               ⬅️ Back
@@ -22,7 +22,7 @@ export default function Post() {
           </Link>
           <Heading>{data.title}</Heading>
           <Text>{data.body}</Text>
-        </>
+        </Box>
       );
   }
 }

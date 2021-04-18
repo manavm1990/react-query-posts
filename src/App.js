@@ -21,8 +21,7 @@ export default function App() {
       <Box fontSize="xl">
         <QueryClientProvider client={qc}>
           <Box px="1rem" my="2rem">
-            {/* TODO: Fix this layout! */}
-            <ColorModeSwitcher />
+            <ColorModeSwitcher position="absolute" right="1rem" />
           </Box>
 
           <Router>
@@ -35,6 +34,7 @@ export default function App() {
                   }}
                   maxW="max-content"
                   ml="1rem"
+                  mb="1rem"
                 >
                   Show Posts
                 </Button>
