@@ -1,4 +1,10 @@
-import { Box, Button, ChakraProvider, Spacer, theme } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  ChakraProvider,
+  extendTheme,
+  Spacer,
+} from '@chakra-ui/react';
 import { fetchPosts } from 'lib';
 import { PostPage, PostsPage } from 'pages';
 import { useEffect, useState } from 'react';
@@ -16,8 +22,23 @@ export default function App() {
     qc.prefetchQuery('posts', fetchPosts);
   });
 
+  const config = { initialColorMode: 'dark' };
+
+  const theme = {
+    styles: {
+      global: {
+        button: {
+          maxWidth: 'max-content',
+        },
+      },
+      ...config,
+    },
+  };
+
+  const customTheme = extendTheme(theme);
+
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={customTheme}>
       <Box fontSize="xl">
         <QueryClientProvider client={qc}>
           <Box px="1rem" my="2rem">

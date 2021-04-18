@@ -26,7 +26,6 @@ export default function PostsList({ posts }) {
           </ListItem>
         ))}
       </UnorderedList>
-      )
     </Box>
   );
 }
