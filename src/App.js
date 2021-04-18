@@ -1,6 +1,13 @@
-import { Box, ChakraProvider, Grid, theme } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  ChakraProvider,
+  Flex,
+  Spacer,
+  theme,
+} from '@chakra-ui/react';
 import { PostPage, PostsPage } from 'pages';
-import React from 'react';
+import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -9,26 +16,39 @@ import { ColorModeSwitcher } from './ColorModeSwitcher';
 const qc = new QueryClient();
 
 export default function App() {
+  const [isVisible, setIsVisible] = useState(false);
+
   return (
     <ChakraProvider theme={theme}>
       <Box fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <QueryClientProvider client={qc}>
-            <Router>
-              <Switch>
-                <Route exact path="/">
-                  <PostsPage />
-                </Route>
+        <QueryClientProvider client={qc}>
+          <Flex px="1rem" my="2rem">
+            <Button
+              onClick={() => {
+                setIsVisible(prev => !prev);
+              }}
+              maxW="max-content"
+            >
+              Show Posts
+            </Button>
+            <Spacer />
 
-                <Route path="/:id">
-                  <PostPage />
-                </Route>
-              </Switch>
-            </Router>
-            <ReactQueryDevtools />
-          </QueryClientProvider>
-        </Grid>
+            <ColorModeSwitcher justifySelf="flex-end" />
+          </Flex>
+
+          <Router>
+            <Switch>
+              <Route exact path="/">
+                <PostsPage show={isVisible} />
+              </Route>
+
+              <Route path="/:id">
+                <PostPage />
+              </Route>
+            </Switch>
+          </Router>
+          <ReactQueryDevtools />
+        </QueryClientProvider>
       </Box>
     </ChakraProvider>
   );
