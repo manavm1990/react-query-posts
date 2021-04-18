@@ -10,7 +10,7 @@ export default function Post() {
 
   const { data, error, status } = useQuery(['post', id], () => api.show(id), {
     initialData: () =>
-      currentQC.getQueryData('posts').find(post => post.id === id),
+      currentQC?.getQueryData('posts').find(post => post.id === id),
     refetchOnWindowFocus: false,
     staleTime: 50000,
   });
