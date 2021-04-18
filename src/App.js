@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import './index.css';
 
 const qc = new QueryClient();
 
